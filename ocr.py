@@ -25,30 +25,22 @@ tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 def main(): 
     # path for the folder for getting the raw images 
-    path =r".\Images"
+    path = r".\Images"
 
     # path for the folder for getting the output 
-    tempPath =r".\Text Files"
+    tempPath = r".\Text Files"
 
-    # iterating the images inside the folder 
+    # iterating the images inside the folder
     for imageName in os.listdir(path): 
 
-        inputPath = os.path.join(path, imageName) 
+        inputPath = os.path.join(path, imageName)
         img = Image.open(inputPath) 
 
         # applying ocr using pytesseract for python 
         text = pt.image_to_string(img, lang ="ben") 
-
-        # for removing the .jpg from the imagePath 
-        # imagePath = imagePath[0:-4] 
-
-        fullTempPath = os.path.join(tempPath, imageName[0:-4]+".txt") 
-        # print(text) 
-
-        # saving the  text for every image in a separate .txt file 
-        file1 = open(fullTempPath, "w") 
-        file1.write(text) 
-        file1.close()  
+        fullTempPath = os.path.join(tempPath, f"{imageName[:-4]}.txt")
+        with open(fullTempPath, "w") as file1:
+            file1.write(text)  
 
 if __name__ == '__main__': 
     main() 
