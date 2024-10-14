@@ -12,7 +12,7 @@ import pyautogui
 class App(QWidget):
     def __init__(self):
         super().__init__()
-        self.title = 'ScreenGrab-OCR'
+        self.title = 'ScreenGrab-OCR --মাহিম সফ্‌ট'
         self.width = 640
         self.height = 640
         self.left = int((pyautogui.size()[0]-self.width)/2)
@@ -51,7 +51,7 @@ class App(QWidget):
         self.grid.addWidget(self.button, 3, 0)
         
         self.textbox = QPlainTextEdit(self)
-        self.textbox.setReadOnly(True)
+        self.textbox.setReadOnly(False)
         self.textbox.setFont(QFont('Shonar Bangla', 11))
         self.textbox.setPlainText("Ready to capture a screenshot.\nRequires installation of Tesseract Open Source OCR Engine.\nLink: https://tesseract-ocr.github.io/tessdoc/Installation.html\n--মাহিম সফ্ট, ঢাকা, বাংলাদেশ।")
         self.grid.addWidget(self.textbox, 4, 0)
@@ -119,7 +119,7 @@ class App(QWidget):
 
     def capture_screenshot(self):
         width, height= pyautogui.size()
-        monitor_screen = (0, 0, width-640, height)
+        monitor_screen = (0, 0, width, height)
         scrgrab = pyautogui.screenshot(region=(monitor_screen))
         scrgrab.save(r'screenshot.png')
 
