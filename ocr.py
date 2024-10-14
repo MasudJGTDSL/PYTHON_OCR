@@ -23,19 +23,16 @@ import os
 
 tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-# path for the folder for getting the raw images 
-path = r".\Images"
-# path for the folder for getting the output 
-textPath = r".\Text_Files"
-
 class Ocr():
     def __init__(self, path, text_files):
         self.path = path
         self.text_files = text_files
+        self.total_file = 0
         self.main()
     def main(self): 
         # iterating the images inside the folder
         for imageName in os.listdir(self.path): 
+            self.total_file += 1
             inputPath = os.path.join(self.path, imageName)
             img = Image.open(inputPath) 
             # applying ocr using pytesseract for python 
@@ -43,6 +40,12 @@ class Ocr():
             fullTempPath = os.path.join(self.text_files, f"{imageName[:-4]}.txt")
             with open(fullTempPath, "w") as file1:
                 file1.write(text)  
+        print(f"Total numbers of file processed: {self.total_file}")
+
+# path for the folder for getting the raw images 
+path = r".\Images"
+# path for the folder for getting the output 
+textPath = r".\Text_Files"
 
 if __name__ == '__main__': 
     oc = Ocr(path=path, text_files=textPath) 
