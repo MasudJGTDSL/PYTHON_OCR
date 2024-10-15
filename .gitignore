@@ -165,3 +165,7 @@ images/*
 !images/
 Text_Files/*
 !Text_Files/
+QRcode_output/*
+!QRcode_output/
+TMP/*
+!TMP/
